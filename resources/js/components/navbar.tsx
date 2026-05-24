@@ -64,7 +64,7 @@ export default function Navbar({
                 <div className="flex items-center justify-between">
                     {/* Brand Logo (Left) */}
                     <a href="#" className="flex items-center gap-2.5 group cursor-pointer">
-                        <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 shadow-md shadow-indigo-500/25 group-hover:scale-105 transition-transform duration-300">
+                        <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-linear-to-tr from-indigo-600 to-violet-500 shadow-md shadow-indigo-500/25 group-hover:scale-105 transition-transform duration-300">
                             {/* Modern geometric glowing logo icon */}
                             <svg
                                 className="w-5 h-5 text-white"
@@ -82,7 +82,7 @@ export default function Navbar({
                             {/* Hover effect outer border */}
                             <div className="absolute inset-0 rounded-xl border border-white/20 group-hover:scale-110 transition-transform duration-300 pointer-events-none"></div>
                         </div>
-                        <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 dark:from-white dark:via-indigo-200 dark:to-white bg-clip-text text-transparent group-hover:opacity-90 transition-opacity">
+                        <span className="text-xl font-bold tracking-tight bg-linear-to-r from-slate-900 via-indigo-950 to-slate-900 dark:from-white dark:via-indigo-200 dark:to-white bg-clip-text text-transparent group-hover:opacity-90 transition-opacity">
                             {brandName}
                         </span>
                     </a>
@@ -97,7 +97,7 @@ export default function Navbar({
                             >
                                 {item.label}
                                 {/* Expanding slide-from-center underline */}
-                                <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-gradient-to-r from-indigo-500 to-violet-500 transition-all duration-300 -translate-x-1/2 group-hover:w-full"></span>
+                                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-linear-to-r from-indigo-500 to-violet-500 transition-all duration-300 -translate-x-1/2 group-hover:w-full"></span>
                             </a>
                         ))}
                     </nav>
@@ -120,10 +120,10 @@ export default function Navbar({
                         <div className="hidden md:flex items-center">
                             <Link
                                 href={ctaHref}
-                                className="relative inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 rounded-xl shadow-md shadow-indigo-500/10 hover:shadow-indigo-500/20 active:scale-95 transition-all duration-200 overflow-hidden group"
+                                className="relative inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 rounded-xl shadow-md shadow-indigo-500/10 hover:shadow-indigo-500/20 active:scale-95 transition-all duration-200 overflow-hidden group"
                             >
                                 {/* Glow hover effect */}
-                                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></span>
+                                <span className="absolute inset-0 w-full h-full bg-linear-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></span>
                                 <span className="relative z-10">{ctaText}</span>
                             </Link>
                         </div>
@@ -138,7 +138,7 @@ export default function Navbar({
                                 {/* Hamburger icon morphs into close 'X' */}
                                 <span
                                     className={`w-5 h-0.5 bg-slate-700 dark:bg-slate-300 rounded-full transform transition-all duration-300 ease-in-out ${
-                                        isOpen ? 'rotate-45 translate-y-[9px]' : ''
+                                        isOpen ? 'rotate-45 translate-y-2.25' : ''
                                     }`}
                                 ></span>
                                 <span
@@ -148,7 +148,7 @@ export default function Navbar({
                                 ></span>
                                 <span
                                     className={`w-5 h-0.5 bg-slate-700 dark:bg-slate-300 rounded-full transform transition-all duration-300 ease-in-out ${
-                                        isOpen ? '-rotate-45 -translate-y-[9px]' : ''
+                                        isOpen ? '-rotate-45 -translate-y-2.25' : ''
                                     }`}
                                 ></span>
                             </div>
@@ -189,7 +189,7 @@ export default function Navbar({
                     <Link
                         href={ctaHref}
                         onClick={() => setIsOpen(false)}
-                        className="mt-2 w-full inline-flex items-center justify-center px-5 py-3 text-base font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 rounded-xl shadow-md shadow-indigo-500/10 hover:shadow-indigo-500/20 active:scale-95 transition-all duration-200 text-center"
+                        className="mt-2 w-full inline-flex items-center justify-center px-5 py-3 text-base font-semibold text-white bg-linear-to-r from-indigo-600 to-violet-600 rounded-xl shadow-md shadow-indigo-500/10 hover:shadow-indigo-500/20 active:scale-95 transition-all duration-200 text-center"
                     >
                         {ctaText}
                     </Link>
