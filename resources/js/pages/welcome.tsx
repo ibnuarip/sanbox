@@ -1,12 +1,32 @@
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
+import Navbar from '@/components/navbar';
 import { dashboard, login, register } from '@/routes';
 
-export default function Welcome({
-    canRegister = true,
-}: {
+export default function Welcome(props: {
     canRegister?: boolean;
 }) {
-    const { auth } = usePage().props;
+    const { auth } = usePage<any>().props;
+
+    // Menentukan teks dan tautan CTA berdasarkan status login dan izin registrasi
+    let ctaText = 'Get Started';
+    let ctaHref = '#';
+    let secondaryCtaText: string | undefined = undefined;
+    let secondaryCtaHref: any = undefined;
+
+    if (auth?.user) {
+        ctaText = 'Dashboard';
+        ctaHref = dashboard() as any;
+    } else {
+        if (props.canRegister) {
+            ctaText = 'Register';
+            ctaHref = register() as any;
+            secondaryCtaText = 'Log in';
+            secondaryCtaHref = login() as any;
+        } else {
+            ctaText = 'Log in';
+            ctaHref = login() as any;
+        }
+    }
 
     return (
         <>
@@ -17,36 +37,17 @@ export default function Welcome({
                     rel="stylesheet"
                 />
             </Head>
-            <div className="flex min-h-screen flex-col items-center bg-[#FDFDFC] p-6 text-[#1b1b18] lg:justify-center lg:p-8 dark:bg-[#0a0a0a]">
-                <header className="mb-6 w-full max-w-[335px] text-sm not-has-[nav]:hidden lg:max-w-4xl">
-                    <nav className="flex items-center justify-end gap-4">
-                        {auth.user ? (
-                            <Link
-                                href={dashboard()}
-                                className="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-                            >
-                                Dashboard
-                            </Link>
-                        ) : (
-                            <>
-                                <Link
-                                    href={login()}
-                                    className="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
-                                >
-                                    Log in
-                                </Link>
-                                {canRegister && (
-                                    <Link
-                                        href={register()}
-                                        className="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-                                    >
-                                        Register
-                                    </Link>
-                                )}
-                            </>
-                        )}
-                    </nav>
-                </header>
+
+            {/* Render Komponen Navbar Premium */}
+            <Navbar 
+                brandName="Laravel Sandbox" 
+                ctaText={ctaText} 
+                ctaHref={ctaHref} 
+                secondaryCtaText={secondaryCtaText}
+                secondaryCtaHref={secondaryCtaHref}
+            />
+
+            <div className="flex min-h-[calc(100-80px)] flex-col items-center bg-[#FDFDFC] p-6 text-[#1b1b18] lg:p-8 dark:bg-[#0a0a0a]">
                 <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
                     <main className="flex w-full max-w-[335px] flex-col-reverse lg:max-w-4xl lg:flex-row">
                         <div className="flex-1 rounded-br-lg rounded-bl-lg bg-white p-6 pb-12 text-[13px] leading-[20px] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-tl-lg lg:rounded-br-none lg:p-20 dark:bg-[#161615] dark:text-[#EDEDEC] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]">
